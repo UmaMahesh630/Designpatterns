@@ -1,5 +1,5 @@
 using System;
-
+Defines an interface for creating objects but allows subclasses to decide which class to instantiate.
 // Product Interface
 public interface IProduct
 {
