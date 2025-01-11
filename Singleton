@@ -1,1 +1,36 @@
 
+using System;
+
+public sealed class Singleton
+{
+    // Lazy initialization ensures thread safety and delayed instantiation.
+    private static readonly Lazy<Singleton> instance = new(() => new Singleton());
+
+    // Private constructor prevents instantiation from outside.
+    private Singleton()
+    {
+        Console.WriteLine("Singleton Instance Created!");
+    }
+
+    // Public property to provide the global access point.
+    public static Singleton Instance => instance.Value;
+
+    public void DoWork()
+    {
+        Console.WriteLine("Singleton Instance is Working.");
+    }
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        var singleton1 = Singleton.Instance;
+        singleton1.DoWork();
+
+        var singleton2 = Singleton.Instance;
+
+        Console.WriteLine(ReferenceEquals(singleton1, singleton2)); // True
+    }
+}
