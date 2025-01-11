@@ -1,0 +1,52 @@
+using System;
+
+// Product Interface
+public interface IProduct
+{
+    void DisplayDetails();
+}
+
+// Concrete Product 1
+public class ProductA : IProduct
+{
+    public void DisplayDetails() => Console.WriteLine("ProductA Details");
+}
+
+// Concrete Product 2
+public class ProductB : IProduct
+{
+    public void DisplayDetails() => Console.WriteLine("ProductB Details");
+}
+
+// Creator (Abstract Factory)
+public abstract class Creator
+{
+    public abstract IProduct CreateProduct();
+}
+
+// Concrete Creator 1
+public class CreatorA : Creator
+{
+    public override IProduct CreateProduct() => new ProductA();
+}
+
+// Concrete Creator 2
+public class CreatorB : Creator
+{
+    public override IProduct CreateProduct() => new ProductB();
+}
+
+// Usage
+class Program
+{
+    static void Main()
+    {
+        Creator creator = new CreatorA();
+        IProduct product = creator.CreateProduct();
+        product.DisplayDetails(); // Output: ProductA Details
+
+        creator = new CreatorB();
+        product = creator.CreateProduct();
+        product.DisplayDetails(); // Output: ProductB Details
+    }
+}
